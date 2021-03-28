@@ -1,7 +1,9 @@
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { OverlayComponent } from './components/pages/homepage/overlay/overlay.component';
@@ -28,7 +30,12 @@ import { CheckoutPageComponent } from './components/pages/checkout-page/checkout
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import {AuthInterceptor} from './interceptors/auth.interceptor';
 import { NotFoundPageComponent } from './components/pages/not-found-page/not-found-page.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
 
 @NgModule({
   declarations: [
@@ -54,6 +61,10 @@ import { NotFoundPageComponent } from './components/pages/not-found-page/not-fou
     SliceBrandPipe,
     CheckoutPageComponent,
     NotFoundPageComponent,
+    RegisterComponent,
+    LoginComponent,
+    ProfileComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -61,11 +72,17 @@ import { NotFoundPageComponent } from './components/pages/not-found-page/not-fou
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}
+    ],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
+

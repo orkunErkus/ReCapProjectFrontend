@@ -7,29 +7,21 @@ import { CustomersComponent } from './components/pages/customers/customers.compo
 import { HomepageComponent } from './components/pages/homepage/homepage.component';
 import { NotFoundPageComponent } from './components/pages/not-found-page/not-found-page.component';
 import { RentalsComponent } from './components/pages/rentals/rentals.component';
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomepageComponent },
-  {
-    path: 'brand/:brandName',
-    pathMatch: 'full',
-    component: HomepageComponent,
-  },
-  {
-    path: 'cars',
-    pathMatch: 'full',
-    component: CarsPageComponent,
-  },
-  {
-    path: 'car/:carId',
-    pathMatch: 'full',
-    component: CarPageComponent,
-  },
+  {path:"login",component:LoginComponent},
+  {path:"register",component:RegisterComponent},
+  {path: 'brand/:brandName',pathMatch: 'full',component: HomepageComponent,},
+  {path: 'cars',pathMatch: 'full',component: CarsPageComponent,},
+  {path: 'car/:carId',pathMatch: 'full',component: CarPageComponent,},
   { path: 'checkout', component: CheckoutPageComponent },
-  { path: 'customers', component: CustomersComponent }, // Test
-  { path: 'rentals', component: RentalsComponent }, // Test
+  { path: 'customers', component: CustomersComponent }, 
+  { path: 'rentals', component: RentalsComponent }, 
   { path: '404', component: NotFoundPageComponent },
-  { path: '**', redirectTo: '404' },
+  { path: '**', redirectTo: '404 Not Faund' },
 ];
 
 @NgModule({
